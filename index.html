@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    a{
+      text-decoration-line: none;
+      color: hsl(52, 100%, 62%);
+    }
+    input{
+      width: 40px;
+    }
+    body{
+      background-color: hsl(268, 75%, 9%);
+      color: hsl(52, 100%, 62%);
+    }
+    #body{
+      margin: 5rem auto;
+      height: 800px;
+      width: 300px;
+    }
+    .flex{
+      display: flex;
+    }
+    .input{
+      background-color: hsl(268, 71%, 12%);
+      padding: 3rem 0 1% 80%;
+      border-radius: 5px;
+    }
+    .num{
+      display: inline-block;
+      position: relative;
+      background-color: hsl(268, 47%, 21%);;
+      padding: .6rem;
+      width: 10%;
+      border-bottom: 3px hsl(285, 91%, 52%) solid;
+      border-radius: 10px;
+      margin: .5rem .6rem;
+      text-align: center;
+    }
+    .c1{
+      margin-top: 1rem;
+    }
+    .calcc{
+      background-color: hsl(268, 71%, 12%);
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .res{
+      background-color: hsl(176, 100%, 44%);
+      border-bottom: 3px hsl(177, 92%, 70%) solid;
+      border-radius: 10px;
+      display: inline-block;
+      position: relative;
+      width: 35%;
+      padding: 1rem;
+      text-align: center;
+      margin-left: 5px;
+    }
+    .but{
+      background-color: hsl(281, 89%, 26%);
+      border-bottom: 3px hsl(285, 91%, 52%) solid;
+    }
+    .t{
+      margin-left: 10rem;
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+<main id="body">
+  <p class="t">1 2 3</p>
+  <div class="flex">
+    <h4>calc</h5>
+    <p class="t">Theme</p>
+    <input type="range" min="1" max="3" value="3" class="slider" id="myRange" placeholder="2" >
+
+  </div>
+  <h3 class="input">12</h3>
+  <div class="calcc">
+    <div class="c1">
+      <a href="#" class="num n7">7</a><a href="#" class="num n8">8</a><a href="#" class="num n9">9</a><a href="#" class="num but del">DEL</a>
+    </div>
+    <div class="c1">
+      <a href="#" class="num n4">4</a><a href="#" class="num n5">5</a><a href="#" class="num n6">6</a><a href="#" class="num add">+</a>
+    </div>
+    <div class="c1">
+      <a href="#" class="num n1">1</a><a href="#" class="num n2">2</a><a href="#" class="num n3">3</a><a href="#" class="num sub">-</a>
+    </div>
+    <div class="c1">
+      <a href="#" class="num point">.</a><a href="#" class="num n0">0</a><a href="#" class="num div">/</a><a href="#" class="num mult">*</a>
+    </div>
+    <div class="c2">
+      <a href="#" class="res but reset">RESET</a><a href="#" class="res equal">=</a>
+    </div>
+  </div>
+</main>
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Abhishek Bansal</a>.
+  </div>
+  <script>
+    let num1 = 0, num2 = 0;
+    let ans =0;
+    const temp = 10;
+    document.querySelector(".reset").addEventListener("click",function(){
+      num1 = 0;
+      num2 = 0;
+      ans = num1 + num2;
+      document.querySelector(".input").innerText = ans;
+    })
+    for (let i = 0; i < 10; i++) {
+      document.querySelector(".n"+i).addEventListener("click", function(){
+        num1 = num1*temp + i;
+        document.querySelector(".input").innerText = num1;
+        ans += num1;
+        document.querySelector(".add").addEventListener("click", function(){
+          for (let j = 0; j < 10; j++) {
+            document.querySelector(".n"+j).addEventListener("click", function(){
+              num2 = num2*temp + j;
+              document.querySelector(".input").innerText = num2;
+              document.querySelector(".equal").addEventListener("click", function(){
+                ans +=num2;
+                document.querySelector(".input").innerText = ans;
+              })
+            })
+          }
+        });
+        document.querySelector(".sub").addEventListener("click", function(){
+          for (let j = 0; j < 10; j++) {
+            document.querySelector(".n"+j).addEventListener("click", function(){
+              num2 = num2*temp + j;
+              document.querySelector(".input").innerText = num2;
+              document.querySelector(".equal").addEventListener("click", function(){
+                ans -=num2;
+                document.querySelector(".input").innerText = ans;
+              })
+            })
+          }
+        });
+        document.querySelector(".mult").addEventListener("click", function(){
+          for (let j = 0; j < 10; j++) {
+            document.querySelector(".n"+j).addEventListener("click", function(){
+              num2 = num2*temp + j;
+              document.querySelector(".input").innerText = num2;
+              document.querySelector(".equal").addEventListener("click", function(){
+                ans *=num2;
+                document.querySelector(".input").innerText = ans;
+              })
+            })
+          }
+        });
+        document.querySelector(".div").addEventListener("click", function(){
+          for (let j = 0; j < 10; j++) {
+            document.querySelector(".n"+j).addEventListener("click", function(){
+              num2 = num2*temp + j;
+              document.querySelector(".input").innerText = num2;
+              document.querySelector(".equal").addEventListener("click", function(){
+                ans /=num2;
+                document.querySelector(".input").innerText = ans;
+              })
+            })
+          }  
+        });
+      });
+    }
+  </script>
+</body>
+</html>
